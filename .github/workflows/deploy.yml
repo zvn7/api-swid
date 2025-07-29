@@ -1,5 +1,9 @@
 name: CI & Deploy to Vercel
 
+permissions:
+  contents: read
+  pull-requests: write
+
 on:
   push:
     branches:
@@ -41,8 +45,8 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          working-directory: ./
-          vercel-args: '' # atau '--confirm'
+          working-directory: ./ # bisa dihapus kalau root
+          vercel-args: ''
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
   deploy-production:
@@ -59,6 +63,6 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          working-directory: ./
+          working-directory: ./ # bisa dihapus kalau root
           vercel-args: '--prod'
           github-token: ${{ secrets.GITHUB_TOKEN }}
